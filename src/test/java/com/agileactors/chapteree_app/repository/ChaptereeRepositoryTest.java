@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-flyway_test.properties")
@@ -25,6 +26,12 @@ public class ChaptereeRepositoryTest {
     void findAll() {
         List<Chapteree> chapterees = chaptereeRepository.findAll();
         assertEquals(6, chapterees.size() , "We should have 6 chapterees!");
+    }
+    @Test
+    void findAllCoachees() {
+        List<Chapteree> coached = chaptereeRepository.findAll().stream()
+                .filter(chapteree -> chapteree.getCoachId()!=null).collect(Collectors.toList());
+        assertEquals(5, coached.size() , "We should have 5 coached chapterees!");
     }
 
     @Test
