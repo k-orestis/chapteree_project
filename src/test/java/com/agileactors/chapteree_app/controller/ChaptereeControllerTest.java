@@ -51,7 +51,7 @@ public class ChaptereeControllerTest extends BaseIntegrity {
         mockMvc.perform(MockMvcRequestBuilders.get(BASE_ENDPOINT+"5"))
                 .andExpect(status().isOk())
                 .andExpect( content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.firstName").value("Stavros"))
+                .andExpect(jsonPath("$.firstName").value("Savros"))
                 .andExpect(jsonPath("$.lastName").value("Kosmapetris"))
                 .andExpect(jsonPath("$.chapter").value("Testing"));
     }

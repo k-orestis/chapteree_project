@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
+
 import javax.transaction.Transactional;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
-import java.util.Optional;
 
 @SpringBootTest
-@TestPropertySource(locations = "classpath:application-flyway_test.properties")
+@TestPropertySource(locations = "classpath:application_test.properties")
 public class ChaptereeRepositoryTest {
 
     @Autowired

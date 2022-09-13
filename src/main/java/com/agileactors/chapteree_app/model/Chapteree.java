@@ -19,6 +19,23 @@ public class Chapteree {
         this.level = level;
     }
 
+    public Chapteree(Long chaptereeId, String firstName, String lastName, String chapter, String level, Long customerId) {
+        this.chaptereeId = chaptereeId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.chapter = chapter;
+        this.level = level;
+        this.customerId = customerId;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
     public enum Level { LOW,
         MID,
         HIGH;}
@@ -38,6 +55,9 @@ public class Chapteree {
 
     @Column(name = "level")
     private String level;
+
+    @Column(name = "customer_id")
+    private Long customerId;
 
     public Long getChaptereeId() {
         return chaptereeId;

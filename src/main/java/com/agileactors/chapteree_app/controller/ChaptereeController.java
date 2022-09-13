@@ -4,7 +4,6 @@ import com.agileactors.chapteree_app.exception.InvalidIdException;
 import com.agileactors.chapteree_app.model.Chapteree;
 import com.agileactors.chapteree_app.service.ChaptereeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.SQLOutput;
 import java.util.List;
 
 @Controller
@@ -66,12 +64,6 @@ public class ChaptereeController {
             return ResponseEntity.ok().build();
         }
         else throw new InvalidIdException();
-    }
-
-    @ExceptionHandler(value = DataAccessException.class)
-    protected ResponseEntity<Object> invalidPost(
-            RuntimeException ex) {
-        return new ResponseEntity<>("All fields required", HttpStatus.BAD_REQUEST);
     }
 
     @RequestMapping(value="{id}", method = RequestMethod.PUT)

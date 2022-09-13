@@ -1,8 +1,10 @@
 package com.agileactors.chapteree_app.service;
 
+import com.agileactors.chapteree_app.exception.InvalidIdException;
 import com.agileactors.chapteree_app.exception.InvalidLevelException;
 import com.agileactors.chapteree_app.model.Chapteree;
 import com.agileactors.chapteree_app.repository.ChaptereeRepository;
+import com.agileactors.chapteree_app.repository.CustomerRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.apache.commons.lang3.EnumUtils;
@@ -16,6 +18,8 @@ public class ChaptereeService {
 
     @Autowired
     ChaptereeRepository chaptereeRepository;
+    @Autowired
+    CustomerService customerService;
 
     public ChaptereeService(ChaptereeRepository chaptereeRepository) { this.chaptereeRepository = chaptereeRepository; }
 
@@ -34,6 +38,7 @@ public class ChaptereeService {
     //save
     public Chapteree save(Chapteree chapteree) {
         validateLevel(chapteree.getLevel());
+        if(chapteree.getCustomerId() != null && !(customerService.existsById(chapteree.getCustomerId()))) { throw new InvalidIdException(); }
         return this.chaptereeRepository.save(chapteree);
     }
 
