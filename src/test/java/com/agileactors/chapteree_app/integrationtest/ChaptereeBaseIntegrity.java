@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-public class BaseIntegrity {
+public class ChaptereeBaseIntegrity {
     public static final String BASE_ENDPOINT = "http://localhost:8080/api/chapteree/";
 
     @Autowired

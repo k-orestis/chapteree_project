@@ -1,6 +1,6 @@
 package com.agileactors.chapteree_app.controller;
 
-import com.agileactors.chapteree_app.integrationtest.BaseIntegrity;
+import com.agileactors.chapteree_app.integrationtest.ChaptereeBaseIntegrity;
 import com.agileactors.chapteree_app.integrationtest.ResponseUtils;
 import com.agileactors.chapteree_app.model.Chapteree;
 import com.agileactors.chapteree_app.service.ChaptereeService;
@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 //@TestPropertySource(locations = "classpath:application-test.properties")
-public class ChaptereeControllerTest extends BaseIntegrity {
+public class ChaptereeControllerTest extends ChaptereeBaseIntegrity {
     @MockBean
     ChaptereeService chaptereeService;
 
@@ -44,9 +44,9 @@ public class ChaptereeControllerTest extends BaseIntegrity {
 
     @Test
     public void getById() throws Exception {
-        Chapteree user = new Chapteree(7L, "Stavros", "Kosmapetris", "Testing",  "LOW");
+        Chapteree chapteree = new Chapteree(7L, "Stavros", "Kosmapetris", "Testing",  "LOW");
         when(chaptereeService.existsById(5L)).thenReturn(true);
-        when(chaptereeService.getOne(5L)).thenReturn(user);
+        when(chaptereeService.getOne(5L)).thenReturn(chapteree);
 
         mockMvc.perform(MockMvcRequestBuilders.get(BASE_ENDPOINT+"5"))
                 .andExpect(status().isOk())

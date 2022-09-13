@@ -48,7 +48,7 @@ public class ChaptereeService {
         return save(existingChapteree);
     }
 
-    private void validateLevel(String lvl) {
+    private static void validateLevel(String lvl) {
         if(!EnumUtils.isValidEnum(Chapteree.Level.class, lvl)) throw new InvalidLevelException();
     }
 }
