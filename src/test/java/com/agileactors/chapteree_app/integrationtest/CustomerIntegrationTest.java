@@ -39,7 +39,8 @@ public class CustomerIntegrationTest extends CustomerBaseIntegrity{
             mockMvc.perform(MockMvcRequestBuilders.get(CUSTOMER_BASE_ENDPOINT+String.valueOf(id)))
                     .andExpect(status().isOk())
                     .andExpect( content().contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(content().string("[\"Customer: "+id.toString()+",Stavros,Kosmapetris\"]"));
+                    .andExpect(jsonPath("$.firstName").value("Stavros"))
+                    .andExpect(jsonPath("$.lastName").value("Kosmapetris"));
         }
         @Test
         public void put() throws Exception{

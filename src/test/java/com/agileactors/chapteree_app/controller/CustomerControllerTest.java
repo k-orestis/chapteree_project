@@ -4,6 +4,8 @@ package com.agileactors.chapteree_app.controller;
 
 import com.agileactors.chapteree_app.integrationtest.CustomerBaseIntegrity;
 import com.agileactors.chapteree_app.integrationtest.ResponseUtils;
+
+
 import com.agileactors.chapteree_app.model.Customer;
 import com.agileactors.chapteree_app.service.CustomerService;
 import org.junit.jupiter.api.Test;
@@ -16,7 +18,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -46,18 +47,16 @@ public class CustomerControllerTest extends CustomerBaseIntegrity {
     @Test
     public void getById() throws Exception {
         Customer customer = new Customer(4L, "Stavros", "Kosmapetris");
-        List<String> newList = new ArrayList<>();
-        newList.add("Customer: 4,Stavros,Kosmapetris");
-        when(customerService.existsById(4L)).thenReturn(true);
-        when(customerService.getOne(4L)).thenReturn(customer);
-        when(customerService.myChapterees(4L)).thenReturn(newList);
 
-        mockMvc.perform(MockMvcRequestBuilders.get(CUSTOMER_BASE_ENDPOINT+"4"))
+        when(customerService.existsById(5L)).thenReturn(true);
+        when(customerService.getOne(5L)).thenReturn(customer);
+
+        mockMvc.perform(MockMvcRequestBuilders.get(CUSTOMER_BASE_ENDPOINT+"5"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().string("[\"Customer: 4,Stavros,Kosmapetris\"]"));
+                .andExpect((ResultMatcher) content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.firstName").value("Stavros"))
+                .andExpect(jsonPath("$.lastName").value("Kosmapetris"));
     }
-
 
 
     @Test
@@ -78,13 +77,15 @@ public class CustomerControllerTest extends CustomerBaseIntegrity {
         Customer putCustomer = new Customer(4L, "Stratos", "Kosmapetris");
         Customer mockCustomer = new Customer(4L, "Stavros", "Kosmapetris");
         doReturn(true).when(customerService).existsById(4L);
-        doReturn(putCustomer).when(customerService).update(any(), any());
+
+        doReturn(mockCustomer).when(customerService).update(any(), any());
+
         mockMvc.perform(MockMvcRequestBuilders.put(CUSTOMER_BASE_ENDPOINT + "4")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(ResponseUtils.asJsonString(putCustomer)))
                 .andExpect(status().isOk())
                 .andExpect( content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.firstName").value("Stratos"))
+                .andExpect(jsonPath("$.firstName").value("Stavros"))
                 .andExpect(jsonPath("$.lastName").value("Kosmapetris"));
     }
 

@@ -24,9 +24,9 @@ public class CoachChaptereeServiceTest {
     void setUp() {
         coachChaptereeService = new CoachChaptereeService(chaptereeRepository);
         chapteree1 = new Chapteree(10L, "John", "Alogoouras",
-                "Java", "MID", 4L, 2L);
+                "Java", "MID", 4L);
         chapteree2 = new Chapteree(4L, "George", "Alogoouras",
-                "Python", "MID", 10L, 2L);
+                "Python", "MID", 10L);
     }
     @Test
     void findAll() {

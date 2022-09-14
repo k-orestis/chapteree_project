@@ -1,7 +1,9 @@
 package com.agileactors.chapteree_app.service;
 
 import com.agileactors.chapteree_app.exception.InvalidIdException;
+
 import com.agileactors.chapteree_app.model.Customer;
+import com.agileactors.chapteree_app.repository.ChaptereeCustomerRepository;
 import com.agileactors.chapteree_app.repository.CustomerRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,18 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.stream.Collectors;
+
+
 @Service
 public class CustomerService {
     @Autowired
     CustomerRepository customerRepository;
+
+
+    @Autowired
+    private ChaptereeCustomerRepository chaptereeCustomerRepository;
+
 
     public CustomerService(CustomerRepository customerRepository) { this.customerRepository = customerRepository; }
 
@@ -61,12 +71,13 @@ public class CustomerService {
     }
 
     //Request functions
-    public ResponseEntity<?> getById(Long id) {
+
+    public ResponseEntity<?> get(Long id) {
         if (this.existsById(id)) {
             Customer customer = this.getOne(id);
             try {
                 return ResponseEntity.ok().location(new URI(String.valueOf(customer.getCustomerId())))
-                        .body(this.myChapterees(id));
+                        .body(customer);
             } catch (URISyntaxException e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
@@ -104,6 +115,31 @@ public class CustomerService {
         }
         else throw new InvalidIdException();
     }
+
+    public ResponseEntity<?> getCustomerChapterees(Long id) {
+        if (this.existsById(id)) {
+            Customer customer = this.getOne(id);
+            try {
+                return ResponseEntity.ok().location(new URI(String.valueOf(customer.getCustomerId())))
+                        .body(this.myChapterees(id));
+            } catch (URISyntaxException e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
+
+        } else throw new InvalidIdException();
+    }
+
+    public List<List<String>> listCustomerChapterees() {
+        List<List<String>> retList = new ArrayList<>();
+        List<Long> customerIds = new ArrayList<>();
+        customerIds = chaptereeCustomerRepository.findAll().stream().map(x -> x.getCustomerId())
+                .distinct().collect(Collectors.toList());
+        for(Long i : customerIds) {
+            retList.add(this.myChapterees(i));
+        }
+        return retList;
+    }
+
 
 }
 
