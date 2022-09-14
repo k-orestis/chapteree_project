@@ -12,7 +12,8 @@ import java.util.List;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    @Query(value = "select chapteree_id, first_name, last_name from chapteree where customer_id = ?1", nativeQuery = true) //chapteree_customer
+    @Query(value = "select * from chapteree where chapteree_id IN " +
+            "(select chapteree_id from chapteree_customer where customer_id = ?1)", nativeQuery = true)
     List<String> myChapterees(Long id);
 
 }

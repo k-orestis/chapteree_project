@@ -2,6 +2,7 @@ package com.agileactors.chapteree_app.service;
 
 import com.agileactors.chapteree_app.model.Customer;
 import com.agileactors.chapteree_app.repository.CustomerRepository;
+import com.agileactors.chapteree_app.repository.CustomerRepositoryTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

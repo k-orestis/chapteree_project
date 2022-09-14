@@ -27,9 +27,9 @@ public class CustomerController {
     }
 
     @GetMapping
-    @RequestMapping(value = "{id}")
+    @RequestMapping("{id}")
     public ResponseEntity<?> get(@PathVariable Long id){
-       return customerService.getById(id);
+        return customerService.get(id);
     }
 
     @PostMapping

@@ -2,9 +2,7 @@ package com.agileactors.chapteree_app.exceptions;
 
 import com.agileactors.chapteree_app.controller.CustomerController;
 import com.agileactors.chapteree_app.exception.InvalidIdException;
-import com.agileactors.chapteree_app.exception.InvalidLevelException;
 import com.agileactors.chapteree_app.model.Customer;
-import com.agileactors.chapteree_app.service.CustomerService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +11,7 @@ import org.springframework.test.context.TestPropertySource;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-@TestPropertySource(locations = "classpath:application_test.properties")
+@TestPropertySource(locations = "classpath:application-flyway_test.properties")
 public class CustomerExceptionsTest {
 
 

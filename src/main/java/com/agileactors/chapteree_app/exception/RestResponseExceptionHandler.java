@@ -18,10 +18,13 @@ public class RestResponseExceptionHandler extends ResponseEntityExceptionHandler
     protected ResponseEntity<Object> invalidLevelHandler(Exception e){
         return new ResponseEntity<>("Invalid Level", HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(value = NoCoachException.class)
+    protected ResponseEntity<Object> noCoachHandler(Exception e){
+        return new ResponseEntity<>("Chapteree has no coach", HttpStatus.NOT_FOUND);
+    }
 
     @ExceptionHandler(value = DataAccessException.class)
-    protected ResponseEntity<Object> invalidPost(
-            RuntimeException ex) {
+    protected ResponseEntity<Object> invalidPostBodyException(Runtime ex){
         return new ResponseEntity<>("All fields required", HttpStatus.BAD_REQUEST);
     }
 }

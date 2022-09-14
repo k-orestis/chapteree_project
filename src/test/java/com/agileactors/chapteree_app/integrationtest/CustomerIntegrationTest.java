@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith({DBUnitExtension.class, SpringExtension.class})
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CustomerIntegrationTest extends BaseIntegrity{
+public class CustomerIntegrationTest extends CustomerBaseIntegrity{
     @Autowired
     private MockMvc mockMvc;
 
@@ -39,7 +39,9 @@ public class CustomerIntegrationTest extends BaseIntegrity{
             mockMvc.perform(MockMvcRequestBuilders.get(CUSTOMER_BASE_ENDPOINT+String.valueOf(id)))
                     .andExpect(status().isOk())
                     .andExpect( content().contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(content().string("[\"Customer: "+id.toString()+",Stavros,Kosmapetris\"]"));
+                    //.andExpect(content().string("[\"Customer: "+id.toString()+",Stavros,Kosmapetris\"]"));
+                    .andExpect(jsonPath("$.firstName").value("Stavros"))
+                    .andExpect(jsonPath("$.lastName").value("Kosmapetris"));
         }
         @Test
         public void put() throws Exception{

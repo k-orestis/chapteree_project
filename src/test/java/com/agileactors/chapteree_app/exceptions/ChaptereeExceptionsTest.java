@@ -13,7 +13,7 @@ import org.springframework.test.context.TestPropertySource;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-@TestPropertySource(locations = "classpath:application_test.properties")
+@TestPropertySource(locations = "classpath:application-flyway_test.properties")
 public class ChaptereeExceptionsTest {
 
 
@@ -27,23 +27,11 @@ public class ChaptereeExceptionsTest {
         }
 
     @Test
-    void deleteByInvalidId() {
-        assertThrows(InvalidIdException.class,
-                () -> chaptereeController.delete(7L));
-    }
-
-    @Test
     void saveByInvalidLevel() {
         assertThrows(InvalidLevelException.class,
-                () -> chaptereeController.create(new Chapteree(7L, "Orestis", "Pyrosvestis", "PHPing", "LOWW", null)));
+                () -> chaptereeController.create(new Chapteree(7L, "Orestis", "Pyrosvestis", "PHPing", "LOWW")));
     }
 
-    //Invalid Customer Id Exceptions
-    @Test
-    void saveByInvalidCustomerId() {
-        assertThrows(InvalidIdException.class,
-                () -> chaptereeController.create(new Chapteree(7L, "Orestis", "Pyrosvestis", "PHPing", "LOW", 22L)));
-    }
 
 
 }

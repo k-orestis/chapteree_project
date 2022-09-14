@@ -9,18 +9,18 @@ import java.util.List;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Customer {
 
-        public Customer() { }
+    public Customer() { }
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name="customer_id")
-        private Long customerId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="customer_id")
+    private Long customerId;
 
-        @Column(name = "first_name")
-        private java.lang.String firstName;
+    @Column(name = "first_name")
+    private java.lang.String firstName;
 
-        @Column(name = "last_name")
-        private java.lang.String lastName;
+    @Column(name = "last_name")
+    private java.lang.String lastName;
 
     public Customer(Long customerId, String firstName, String lastName) {
         this.customerId = customerId;
