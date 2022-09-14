@@ -65,6 +65,6 @@ public class ChaptereeRepositoryTest {
 
     @Test
     void myCustomers() {
-        assertEquals(2 , chaptereeRepository.myCustomers(2L).size());
+        assertEquals(1 , chaptereeRepository.myCustomers(2L).size());
     }
 }
