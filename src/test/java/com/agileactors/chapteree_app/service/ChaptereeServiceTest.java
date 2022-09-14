@@ -5,6 +5,7 @@ import com.agileactors.chapteree_app.repository.ChaptereeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -74,5 +75,12 @@ public class ChaptereeServiceTest {
         assertEquals(newChapteree.getLastName(), updatedChapteree.getLastName());
         assertEquals(newChapteree.getChapter(), updatedChapteree.getChapter());
         assertEquals(newChapteree.getLevel(), updatedChapteree.getLevel());
+    }
+
+    @Test
+    void myCustomers() {
+        when(chaptereeRepository.getOne(CHAPTEREE_ID)).thenReturn(chapteree);
+        when(chaptereeRepository.myCustomers(CHAPTEREE_ID)).thenReturn(new ArrayList<>());
+        assertEquals(1,chaptereeService.myCustomers(CHAPTEREE_ID).size());
     }
 }

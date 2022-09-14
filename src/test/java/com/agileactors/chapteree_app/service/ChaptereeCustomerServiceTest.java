@@ -1,9 +1,7 @@
 package com.agileactors.chapteree_app.service;
 
-import com.agileactors.chapteree_app.model.Chapteree;
 import com.agileactors.chapteree_app.model.ChaptereeCustomer;
-import com.agileactors.chapteree_app.model.CoachChapteree;
-import com.agileactors.chapteree_app.model.CustomerIds;
+import com.agileactors.chapteree_app.model.ChaptereeCustomerId;
 import com.agileactors.chapteree_app.repository.ChaptereeCustomerRepository;
 import com.agileactors.chapteree_app.repository.ChaptereeRepository;
 import com.agileactors.chapteree_app.repository.CustomerRepository;
@@ -15,7 +13,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class ChaptereeCustomerServiceTest {
-    CustomerIds customerIds;
+    ChaptereeCustomerId chaptereeCustomerId;
     ChaptereeCustomer chaptereeCustomer;
     private ChaptereeCustomerRepository chaptereeCustomerRepository = mock(ChaptereeCustomerRepository.class);
     private CustomerRepository customerRepository = mock(CustomerRepository.class);
@@ -26,13 +24,13 @@ public class ChaptereeCustomerServiceTest {
     void setUp() {
         chaptereeCustomerService = new ChaptereeCustomerService(chaptereeCustomerRepository,
                 customerRepository, chaptereeRepository);
-        customerIds = new CustomerIds(10L, 4L);
+        chaptereeCustomerId = new ChaptereeCustomerId(10L, 4L);
        chaptereeCustomer = new ChaptereeCustomer(10L, 4L);
     }
     @Test
     void save() {
         when(chaptereeCustomerRepository.save(chaptereeCustomer)).thenReturn(chaptereeCustomer);
-        ChaptereeCustomer newChaptereeCustomer = chaptereeCustomerService.save(customerIds);
+        ChaptereeCustomer newChaptereeCustomer = chaptereeCustomerService.save(chaptereeCustomerId);
         assertEquals(chaptereeCustomer.getChaptereeId(), newChaptereeCustomer.getChaptereeId());
         assertEquals(chaptereeCustomer.getCustomerId(), newChaptereeCustomer.getCustomerId());
 

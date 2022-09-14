@@ -12,6 +12,7 @@ VALUES ('Ioannis', 'Nikitas'),
        ('Menelaos', 'Nikitakis'),
        ('John', 'Johniou');
 
+
 INSERT INTO chapteree_customer(chapteree_id, customer_id)
 VALUES ('1', '2'),
        ('1', '3'),

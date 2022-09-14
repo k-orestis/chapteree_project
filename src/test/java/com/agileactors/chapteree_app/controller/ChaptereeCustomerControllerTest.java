@@ -3,9 +3,7 @@ package com.agileactors.chapteree_app.controller;
 import com.agileactors.chapteree_app.integrationtest.ChaptereeCustomerBaseIntegrity;
 import com.agileactors.chapteree_app.integrationtest.ResponseUtils;
 import com.agileactors.chapteree_app.model.ChaptereeCustomer;
-import com.agileactors.chapteree_app.model.CoachChapteree;
-import com.agileactors.chapteree_app.model.CustomerIds;
-import com.agileactors.chapteree_app.model.Ids;
+import com.agileactors.chapteree_app.model.ChaptereeCustomerId;
 import com.agileactors.chapteree_app.service.ChaptereeCustomerService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +29,9 @@ public class ChaptereeCustomerControllerTest extends ChaptereeCustomerBaseIntegr
 
     @Test
     public void post() throws Exception{
-        CustomerIds customerIds = new CustomerIds(22L, 11L);
-        when(chaptereeCustomerService.existsById(customerIds)).thenReturn(true);
-        doReturn(new ChaptereeCustomer(22L, 11L)).when(chaptereeCustomerService).save(customerIds);
+        ChaptereeCustomerId chaptereeCustomerId = new ChaptereeCustomerId(22L, 11L);
+        when(chaptereeCustomerService.existsById(chaptereeCustomerId)).thenReturn(true);
+        doReturn(new ChaptereeCustomer(22L, 11L)).when(chaptereeCustomerService).save(chaptereeCustomerId);
         mockMvc.perform(MockMvcRequestBuilders.post(BASE_ENDPOINT)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(ResponseUtils.asJsonString(new ChaptereeCustomer(22L, 11L))))
@@ -46,9 +44,9 @@ public class ChaptereeCustomerControllerTest extends ChaptereeCustomerBaseIntegr
 
     @Test
     public void delete() throws Exception {
-        CustomerIds customerIds = new CustomerIds(22L, 11L);
-        doReturn(true).when(chaptereeCustomerService).existsById(customerIds);
-        doNothing().when(chaptereeCustomerService).delete(customerIds);
+        ChaptereeCustomerId chaptereeCustomerId = new ChaptereeCustomerId(22L, 11L);
+        doReturn(true).when(chaptereeCustomerService).existsById(chaptereeCustomerId);
+        doNothing().when(chaptereeCustomerService).delete(chaptereeCustomerId);
         mockMvc.perform(MockMvcRequestBuilders.delete(BASE_ENDPOINT + "22").contentType(MediaType.APPLICATION_JSON)
                         .content(ResponseUtils.asJsonString(new ChaptereeCustomer(22L, 11L))))
                 .andExpect(status().isOk());

@@ -1,9 +1,7 @@
 package com.agileactors.chapteree_app.repository;
 
-import com.agileactors.chapteree_app.model.Chapteree;
 import com.agileactors.chapteree_app.model.ChaptereeCustomer;
-import com.agileactors.chapteree_app.model.Customer;
-import com.agileactors.chapteree_app.model.CustomerIds;
+import com.agileactors.chapteree_app.model.ChaptereeCustomerId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,20 +28,20 @@ public class ChaptereeCustomerRepositoryTest {
     @Test
     @Transactional
     void getOne() {
-        ChaptereeCustomer chapCustomer = chaptereeCustomerRepository.getOne(new CustomerIds(1L, 2L));
+        ChaptereeCustomer chapCustomer = chaptereeCustomerRepository.getOne(new ChaptereeCustomerId(1L, 2L));
         assertEquals(1L, chapCustomer.getChaptereeId());
         assertEquals(2L, chapCustomer.getCustomerId());
     }
 
     @Test
     void saveDelete() {
-        CustomerIds customerIds = new CustomerIds(5L,2L);
+        ChaptereeCustomerId chaptereeCustomerId = new ChaptereeCustomerId(5L,2L);
         ChaptereeCustomer newChapCustomer =
                 chaptereeCustomerRepository.save(new ChaptereeCustomer(5L, 2L));
         assertEquals(5L, newChapCustomer.getChaptereeId());
         assertEquals(2L, newChapCustomer.getCustomerId());
-        chaptereeCustomerRepository.deleteById(customerIds);
-        assertFalse(chaptereeCustomerRepository.existsById(customerIds));
+        chaptereeCustomerRepository.deleteById(chaptereeCustomerId);
+        assertFalse(chaptereeCustomerRepository.existsById(chaptereeCustomerId));
     }
 
 

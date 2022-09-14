@@ -6,8 +6,10 @@ import javax.persistence.*;
 
 @Entity(name = "chapteree_customer")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@IdClass(CustomerIds.class)
+@IdClass(ChaptereeCustomerId.class)
 public class ChaptereeCustomer {
+
+
     @Id
     @Column(name="chapteree_id")
     private Long chaptereeId;
@@ -16,10 +18,15 @@ public class ChaptereeCustomer {
     @Column(name="customer_id")
     private Long customerId;
 
+
+
+
+
     public ChaptereeCustomer(Long chaptereeId, Long customerId) {
         this.chaptereeId = chaptereeId;
         this.customerId = customerId;
     }
+
 
     public ChaptereeCustomer() {
     }

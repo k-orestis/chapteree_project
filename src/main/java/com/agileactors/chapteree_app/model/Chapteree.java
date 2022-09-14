@@ -21,6 +21,7 @@ public class Chapteree {
         this.coachId = coachId;
     }
 
+
     public Chapteree(Long chaptereeId, String firstName, String lastName, String chapter, String level) {
         this.chaptereeId = chaptereeId;
         this.firstName = firstName;
@@ -28,6 +29,7 @@ public class Chapteree {
         this.chapter = chapter;
         this.level = level;
         this.coachId=null;
+
     }
 
 
@@ -63,7 +65,6 @@ public class Chapteree {
 
     @Column(name="coach_id")
     private Long coachId;
-
 
     public Long getChaptereeId() {
         return chaptereeId;

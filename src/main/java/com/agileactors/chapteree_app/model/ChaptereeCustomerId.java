@@ -2,14 +2,14 @@ package com.agileactors.chapteree_app.model;
 
 import java.io.Serializable;
 
-public class CustomerIds implements Serializable {
-    public CustomerIds() {
+public class ChaptereeCustomerId implements Serializable {
+    public ChaptereeCustomerId() {
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof CustomerIds) return customerId == ((CustomerIds) obj).getCustomerId()
-                && chaptereeId == ((CustomerIds) obj).getChaptereeId();
+        if (obj instanceof ChaptereeCustomerId) return customerId == ((ChaptereeCustomerId) obj).getCustomerId()
+                && chaptereeId == ((ChaptereeCustomerId) obj).getChaptereeId();
         else return false;
     }
 
@@ -29,7 +29,7 @@ public class CustomerIds implements Serializable {
         this.customerId = customerId;
     }
 
-    public CustomerIds(Long chaptereeId, Long customerId) {
+    public ChaptereeCustomerId(Long chaptereeId, Long customerId) {
         this.chaptereeId = chaptereeId;
         this.customerId = customerId;
     }

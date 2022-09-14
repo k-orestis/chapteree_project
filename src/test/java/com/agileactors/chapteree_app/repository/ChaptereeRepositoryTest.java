@@ -62,4 +62,9 @@ public class ChaptereeRepositoryTest {
         chaptereeRepository.deleteById(newChapteree.getChaptereeId());
         assertFalse(chaptereeRepository.existsById(newChapteree.getChaptereeId()));
     }
+
+    @Test
+    void myCustomers() {
+        assertEquals(2 , chaptereeRepository.myCustomers(2L).size());
+    }
 }

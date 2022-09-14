@@ -1,6 +1,6 @@
 package com.agileactors.chapteree_app.controller;
 
-import com.agileactors.chapteree_app.model.CustomerIds;
+import com.agileactors.chapteree_app.model.ChaptereeCustomerId;
 import com.agileactors.chapteree_app.service.ChaptereeCustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,15 +20,15 @@ public class ChaptereeCustomerController {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<?> create(@RequestBody CustomerIds customerIds){
-        return chaptereeCustomerService.create(customerIds);
+    public ResponseEntity<?> create(@RequestBody ChaptereeCustomerId chaptereeCustomerId){
+        return chaptereeCustomerService.create(chaptereeCustomerId);
 
     }
 
 
     @RequestMapping(value="{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> delete(@PathVariable Long id, @RequestBody CustomerIds customerIds){
-        return chaptereeCustomerService.deleteById(id, customerIds);
+    public ResponseEntity<?> delete(@PathVariable Long id, @RequestBody ChaptereeCustomerId chaptereeCustomerId){
+        return chaptereeCustomerService.deleteById(id, chaptereeCustomerId);
     }
 
 }
